@@ -7,7 +7,7 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace fronius_data_shovel
+namespace FroniusDataShovel
 {
     class Program
     {
