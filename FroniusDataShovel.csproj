@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>fronius_data_shovel</RootNamespace>
+    <RootNamespace>FroniusDataShovel</RootNamespace>
   </PropertyGroup>
 
 </Project>
