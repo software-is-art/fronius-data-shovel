@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Text.Json;
 using System.Threading.Tasks;
+using FroniusDataShovel.SolarApi.GetPowerFlowRealtimeData;
 
 namespace FroniusDataShovel
 {
@@ -21,7 +24,7 @@ namespace FroniusDataShovel
             }
         }
 
-        static IEnumerable<Task<(string, string)>> GetResponsesFromGatewayClients() {
+        static IEnumerable<Task<(string, Response)>> GetResponsesFromGatewayClients() {
             foreach (var ip in GetGatewayAddresses()) {
                 if (ip.AddressFamily != AddressFamily.InterNetwork) {
                     continue;
@@ -32,12 +35,12 @@ namespace FroniusDataShovel
                 }
             }
         }
-        static async Task<(string, string)> GetResponse(string uri) {
+        static async Task<(string, Response)> GetResponse(string uri) {
             try {
-                var response = await __httpClient.GetAsync(uri);
-                return (uri, await response.Content.ReadAsStringAsync());
+                var stream = await __httpClient.GetStreamAsync(uri);
+                return (uri, await JsonSerializer.DeserializeAsync<Response>(stream));
             } catch {
-                return (uri, string.Empty);
+                return (uri, null);
             }
         }
 
