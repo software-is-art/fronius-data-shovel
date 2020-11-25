@@ -1,4 +1,4 @@
-namespace FroniusDataShovel.SolarApi.GetPowerFlowRealtimeData {
+namespace FroniusSolarApiClient.Endpoints.GetPowerFlowRealtimeData {
     public record Status(
         int Code,
         string Reason,

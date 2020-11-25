@@ -1,9 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>FroniusDataShovel</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../FroniusSolarApiClient/FroniusSolarApiClient.csproj" />
+  </ItemGroup>
 
 </Project>

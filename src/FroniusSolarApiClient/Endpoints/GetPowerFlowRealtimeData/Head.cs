@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FroniusDataShovel.SolarApi.GetPowerFlowRealtimeData {
+namespace FroniusSolarApiClient.Endpoints.GetPowerFlowRealtimeData {
     public record Head(
         Dictionary<string, string> RequestArguments,
         Status Status,
