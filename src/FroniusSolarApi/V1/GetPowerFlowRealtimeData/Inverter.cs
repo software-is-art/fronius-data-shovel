@@ -3,18 +3,18 @@ using System.Text.Json.Serialization;
 namespace FroniusSolarApi.V1.GetPowerFlowRealtimeData {
     public record Inverter {
         [JsonPropertyName("DT")]
-        int DeviceType { get; init; }
+        public int DeviceType { get; init; }
 
         [JsonPropertyName("E_Day")]
-        double EnergyDay { get; init; }
+        public double? EnergyDay { get; init; }
 
         [JsonPropertyName("E_Year")]
-        double EnergyYear { get; init; }
+        public double? EnergyYear { get; init; }
 
         [JsonPropertyName("E_Total")]
-        double EnergyTotal { get; init; }
+        public double? EnergyTotal { get; init; }
 
         [JsonPropertyName("P")]
-        double Power { get; init; }
+        public double? Power { get; init; }
     }
 }
