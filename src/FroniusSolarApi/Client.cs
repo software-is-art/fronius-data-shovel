@@ -3,7 +3,7 @@ using System.Net.Http;
 
 namespace FroniusSolarApi {
 	public class Client : IClient {
-		protected HttpClient HttpClient { get; }
+		private HttpClient HttpClient { get; }
 		private Uri BaseUri { get; }
 		HttpClient IClient.HttpClient => HttpClient;
 		Uri IClient.BaseUri => BaseUri;
