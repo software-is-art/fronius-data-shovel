@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FroniusSolarApiClient.Endpoints.GetPowerFlowRealtimeData {
+namespace FroniusSolarApi.V1.GetPowerFlowRealtimeData {
     public record Inverter {
         [JsonPropertyName("DT")]
         int DeviceType { get; init; }

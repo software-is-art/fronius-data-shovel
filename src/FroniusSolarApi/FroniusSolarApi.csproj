@@ -2,6 +2,7 @@
   <PropertyGroup>
     <OutputType>library</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>FroniusSolarApiClient</RootNamespace>
+    <RootNamespace>FroniusSolarApi</RootNamespace>
+		<Nullable>enable</Nullable>
   </PropertyGroup>
 </Project>

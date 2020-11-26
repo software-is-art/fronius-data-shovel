@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../FroniusSolarApiClient/FroniusSolarApiClient.csproj" />
+    <ProjectReference Include="../FroniusSolarApi/FroniusSolarApiClient.csproj" />
   </ItemGroup>
 
 </Project>

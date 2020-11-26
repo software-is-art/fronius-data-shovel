@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FroniusSolarApiClient.Endpoints.GetPowerFlowRealtimeData {
+namespace FroniusSolarApi.V1.GetPowerFlowRealtimeData {
     public record Site {
         [JsonPropertyName("E_Day")]
         double EnergyDay { get; init; }
