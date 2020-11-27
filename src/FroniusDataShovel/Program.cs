@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Text.Json;
 using System.Threading.Tasks;
 using FroniusSolarApi;
 using FroniusSolarApi.V1.GetPowerFlowRealtimeData;
@@ -18,6 +19,7 @@ namespace FroniusDataShovel
         {
             await foreach (var client in DiscoverInverterClients()) {
                 Console.WriteLine($"Inverter discovered at: {client.BaseUri}");
+                Console.WriteLine($"{JsonSerializer.Serialize(client.GetPowerFlowRealtimeData())}");
             }
         }
 

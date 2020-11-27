@@ -4,3 +4,4 @@ obj/
 .vs/
 .fake
 .ionide
+cdk.out
