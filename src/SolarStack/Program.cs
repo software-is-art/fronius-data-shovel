@@ -21,7 +21,7 @@ namespace SolarStack
                     Account = accountId,
                     Region = region
                 }
-            }); ;
+            });
             app.Synth();
         }
     }
