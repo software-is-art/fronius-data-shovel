@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Amazon.SQS;
 using Amazon.SQS.Model;
+using CommandLine;
 using FroniusSolarApi;
 using FroniusSolarApi.V1.GetPowerFlowRealtimeData;
 
@@ -18,20 +19,23 @@ namespace FroniusDataShovel
     class Program
     {
         private static readonly HttpClient __httpClient = new HttpClient();
-        static async Task Main(string[] args)
-        {
-            var source = new CancellationTokenSource();
-            var client = await DiscoverInverter(source.Token);
-            source.Cancel();
-            await PushToSQS(client);
-        }
+		static async Task Main(string[] args) => await Parser.Default.ParseArguments<Options>(args)
+			.WithParsedAsync(async op => {
+                if (string.IsNullOrEmpty(op.AwsAccountId)) {
+                    throw new Exception("aws-account-id must be non null and valid");
+				}
+				var source = new CancellationTokenSource();
+				var client = await DiscoverInverter(source.Token);
+				source.Cancel();
+				await PushToSQS(client, op.AwsAccountId);
+			});
 
-        static async Task PushToSQS(IClient client) {
+		static async Task PushToSQS(IClient client, string accountId) {
             var source = new CancellationTokenSource();
             var sqsClient = new AmazonSQSClient();
             var urlRequest = new GetQueueUrlRequest {
                 QueueName = AWSConstructs.Names.FroniusIngressQueue,
-                QueueOwnerAWSAccountId = "AccountIDHere"
+                QueueOwnerAWSAccountId = accountId
             };
             var url = (await sqsClient.GetQueueUrlAsync(urlRequest))?.QueueUrl;
             if (url == null) {

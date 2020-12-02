@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FroniusDataShovel": {
+      "commandName": "Project",
+      "commandLineArgs": "--aws-account-id=<set-me>"
+    }
+  }
+}
