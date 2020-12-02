@@ -10,8 +10,8 @@ namespace SolarStack
             var app = new App();
             new SolarStack(app, new StackProps {
                 Env = new Environment {
-                    //Account = "foo"
-                    //Region = "bar"
+                    Account = "AccountIdHere",
+                    Region = "us-east-1"
 				}
             });
             app.Synth();

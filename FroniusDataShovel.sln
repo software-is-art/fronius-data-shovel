@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolarStack", "src\SolarStac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaHandlers.Tests", "test\LambdaHandlers.Tests\LambdaHandlers.Tests.csproj", "{C10E8DC0-AF75-4613-B816-23F4CAA5C1C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSConstructs", "src\AWSConstructs\AWSConstructs.csproj", "{CE46480A-8CA8-4EEF-903A-28780C545B41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,18 @@ Global
 		{C10E8DC0-AF75-4613-B816-23F4CAA5C1C8}.Release|x64.Build.0 = Release|Any CPU
 		{C10E8DC0-AF75-4613-B816-23F4CAA5C1C8}.Release|x86.ActiveCfg = Release|Any CPU
 		{C10E8DC0-AF75-4613-B816-23F4CAA5C1C8}.Release|x86.Build.0 = Release|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Debug|x64.Build.0 = Debug|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Debug|x86.Build.0 = Debug|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Release|x64.ActiveCfg = Release|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Release|x64.Build.0 = Release|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Release|x86.ActiveCfg = Release|Any CPU
+		{CE46480A-8CA8-4EEF-903A-28780C545B41}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,6 +126,7 @@ Global
 		{95CF8FB8-0CAB-4C9D-866F-C83D062E4CE6} = {9A04DE58-8B59-4C18-9E94-B4EFD7D08D4F}
 		{63E99E7A-2E19-4412-9711-CF7EF048A4AB} = {9A04DE58-8B59-4C18-9E94-B4EFD7D08D4F}
 		{C10E8DC0-AF75-4613-B816-23F4CAA5C1C8} = {982E20E0-2263-485F-A970-F533664304F7}
+		{CE46480A-8CA8-4EEF-903A-28780C545B41} = {9A04DE58-8B59-4C18-9E94-B4EFD7D08D4F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {574FA731-A6E6-4D38-971D-62D3EC9A740D}

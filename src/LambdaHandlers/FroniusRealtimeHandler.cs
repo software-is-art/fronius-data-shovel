@@ -14,6 +14,7 @@ namespace LambdaHandlers
 {
     public class FroniusRealtimeHandler
     {
+        public static string HandlerName { get; } = $"{nameof(LambdaHandlers)}::{nameof(LambdaHandlers)}.{nameof(FroniusRealtimeHandler)}::{nameof(FunctionHandler)}";
         /// <summary>
         /// Default constructor. This constructor is used by Lambda to construct the instance. When invoked in a Lambda environment
         /// the AWS credentials will come from the IAM role associated with the function and the AWS region will be set to the

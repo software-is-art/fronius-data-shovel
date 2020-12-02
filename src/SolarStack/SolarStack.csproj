@@ -17,10 +17,6 @@
     <PackageReference Include="Amazon.Lambda.Core" Version="1.2.0" />
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.1.0" />
     <PackageReference Include="Amazon.Lambda.SQSEvents" Version="1.2.0" />
-    <PackageReference Include="GitInfo" Version="2.1.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
 
     <!-- jsii Roslyn analyzers (un-comment to obtain compile-time checks for missing required props
     <PackageReference Include="Amazon.Jsii.Analyzers" Version="*" PrivateAssets="all" />
@@ -28,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AWSConstructs\AWSConstructs.csproj" />
     <ProjectReference Include="..\LambdaHandlers\LambdaHandlers.csproj" />
   </ItemGroup>
 

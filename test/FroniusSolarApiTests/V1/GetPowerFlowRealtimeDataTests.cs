@@ -60,7 +60,7 @@ namespace FroniusSolarApiTests.V1 {
                ), new Uri("http://127.0.0.1")
             );
 
-            (await client.GetPowerFlowRealtimeData()).Validate(
+            (await client.GetPowerFlowRealtimeData(default)).Validate(
                 response => {
                     response.Body.Validate(body => {
                         body.Data.Validate(data => {
