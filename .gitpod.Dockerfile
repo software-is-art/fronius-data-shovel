@@ -13,3 +13,4 @@ RUN dotnet tool install -g Amazon.Lambda.Tools
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
     unzip awscliv2.zip && \
     sudo ./aws/install
+RUN brew install node@12
