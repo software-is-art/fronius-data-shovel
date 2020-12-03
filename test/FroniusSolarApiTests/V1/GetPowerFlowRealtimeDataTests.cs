@@ -5,10 +5,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace FroniusSolarApiTests.V1 {
+namespace FroniusSolarApiTests.V1
+{
     public class GetPowerFlowRealtimeDataTests
     {
-        private static string ResponseObject { get; } = 
+        private static string ResponseObject { get; } =
 @"{
    ""Body"" : {
       ""Data"" : {
@@ -54,17 +55,22 @@ namespace FroniusSolarApiTests.V1 {
         {
             IClient client = new Client(
                 new HttpClient(
-                    new TestHttpMessageHandler { 
-                        Content = ResponseObject 
+                    new TestHttpMessageHandler
+                    {
+                        Content = ResponseObject
                     }
                ), new Uri("http://127.0.0.1")
             );
 
             (await client.GetPowerFlowRealtimeData(default)).Validate(
-                response => {
-                    response.Body.Validate(body => {
-                        body.Data.Validate(data => {
-                            data.Inverters.Validate(inverters => {
+                response =>
+                {
+                    response.Body.Validate(body =>
+                    {
+                        body.Data.Validate(data =>
+                        {
+                            data.Inverters.Validate(inverters =>
+                            {
                                 Assert.True(inverters.TryGetValue("1", out var inverter));
                                 Assert.Equal(76, inverter.DeviceType);
                                 Assert.Equal(30152, inverter.EnergyDay);
@@ -72,7 +78,8 @@ namespace FroniusSolarApiTests.V1 {
                                 Assert.Equal(158419, inverter.EnergyYear);
                                 Assert.Equal(656, inverter.Power);
                             });
-                            data.Site.Validate(site => {
+                            data.Site.Validate(site =>
+                            {
                                 Assert.Equal(30152, site.EnergyDay);
                                 Assert.Equal(158419.015625, site.EnergyTotal);
                                 Assert.Equal(158419, site.EnergyYear);
@@ -88,18 +95,21 @@ namespace FroniusSolarApiTests.V1 {
                             Assert.Equal("12", data.Version);
                         });
                     });
-                    response.Head.Validate(head => {
-                        head.RequestArguments.Validate(requestArgs => {
+                    response.Head.Validate(head =>
+                    {
+                        head.RequestArguments.Validate(requestArgs =>
+                        {
                             Assert.True(requestArgs.TryGetValue("foo", out var value));
                             Assert.Equal("bar", value);
                         });
-                        head.Status.Validate(status => {
+                        head.Status.Validate(status =>
+                        {
                             Assert.Equal(0, status.Code);
                             Assert.Equal("Aliens", status.Reason);
                             Assert.Equal("Sorry", status.UserMessage);
                         });
                     });
-				}
+                }
             );
         }
     }

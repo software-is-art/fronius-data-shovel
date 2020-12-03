@@ -1,7 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Models.FroniusSolarApi.V1.GetPowerFlowRealtimeData {
-	public class Site {
+namespace Models.FroniusSolarApi.V1.GetPowerFlowRealtimeData
+{
+    public class Site
+    {
         [JsonPropertyName("E_Day")]
         public double? EnergyDay { get; set; }
 

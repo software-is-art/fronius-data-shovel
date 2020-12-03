@@ -1,7 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Models.FroniusSolarApi.V1.GetPowerFlowRealtimeData {
-	public class Inverter {
+namespace Models.FroniusSolarApi.V1.GetPowerFlowRealtimeData
+{
+    public class Inverter
+    {
         [JsonPropertyName("DT")]
         public int DeviceType { get; set; }
 
