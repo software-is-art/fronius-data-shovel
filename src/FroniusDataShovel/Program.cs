@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -20,16 +20,16 @@ namespace FroniusDataShovel
     class Program
     {
         private static readonly HttpClient __httpClient = new HttpClient();
-		static async Task Main(string[] args) => await Parser.Default.ParseArguments<Options>(args)
-			.WithParsedAsync(async op => {
-                if (string.IsNullOrEmpty(op.AwsAccountId)) {
-                    throw new Exception("aws-account-id must be non null and valid");
-				}
-				var source = new CancellationTokenSource();
-				var client = await DiscoverInverter(source.Token);
-				source.Cancel();
-				await PushToSQS(client, op.AwsAccountId);
-			});
+		static async Task Main(string[] args) {
+            var accountId = Environment.GetEnvironmentVariable("AWS_ACCOUNT_ID");
+            if (string.IsNullOrEmpty(accountId)) {
+                throw new Exception("AWS_ACCOUNT_ID must be non null and valid");
+            }
+            var source = new CancellationTokenSource();
+            var client = await DiscoverInverter(source.Token);
+            source.Cancel();
+            await PushToSQS(client, accountId);
+		}
 
 		static async Task PushToSQS(IClient client, string accountId) {
             var source = new CancellationTokenSource();
