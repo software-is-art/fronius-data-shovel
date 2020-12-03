@@ -1,0 +1,6 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: 'dotnet build FroniusDataShovel.sln'
+    command: 'cd src/LambdaHandlers && dotnet lambda package && cd ../.. && cdk deploy'
