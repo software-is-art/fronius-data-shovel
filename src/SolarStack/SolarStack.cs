@@ -33,8 +33,8 @@ namespace SolarStack {
             });
 
             ingressFunction.AddEventSource(new SqsEventSource(ingressQueue));
-
-			_ = realtimeDataTable.GrantReadWriteData(ingressFunction);
+            
+            _ = realtimeDataTable.GrantReadWriteData(ingressFunction);
 			_ = realtimeDataTable.Grant(ingressFunction, "dynamodb:DescribeTable");
         }
     }
