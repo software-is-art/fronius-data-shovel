@@ -14,3 +14,4 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     unzip awscliv2.zip && \
     sudo ./aws/install
 RUN brew install node@12
+RUN npm install -g aws-cdk
