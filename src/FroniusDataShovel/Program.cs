@@ -13,6 +13,7 @@ using Amazon.SQS.Model;
 using CommandLine;
 using FroniusSolarApi;
 using FroniusSolarApi.V1.GetPowerFlowRealtimeData;
+using Models.FroniusSolarApi.V1.GetPowerFlowRealtimeData;
 
 namespace FroniusDataShovel
 {

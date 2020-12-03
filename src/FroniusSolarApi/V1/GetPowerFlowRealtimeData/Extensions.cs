@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using Models.FroniusSolarApi.V1.GetPowerFlowRealtimeData;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FroniusSolarApi.V1.GetPowerFlowRealtimeData {

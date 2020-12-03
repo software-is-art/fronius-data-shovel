@@ -5,4 +5,10 @@
     <RootNamespace>FroniusSolarApi</RootNamespace>
 		<Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="V1\GetPowerFlowRealtimeData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj" />
+  </ItemGroup>
 </Project>
