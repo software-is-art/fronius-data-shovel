@@ -4,3 +4,6 @@ image:
 tasks:
   - init: 'dotnet build FroniusDataShovel.sln'
     command: 'cd src/LambdaHandlers && dotnet lambda package && cd ../.. && cdk deploy'
+vscode:
+  extensions:
+    - ms-dotnettools.csharp@1.23.6:qOOlFzbLQsGAgQYbPRugSw==

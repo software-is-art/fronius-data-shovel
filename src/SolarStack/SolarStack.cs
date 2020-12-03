@@ -14,7 +14,8 @@ namespace SolarStack {
                 Fifo = true,
                 Encryption = QueueEncryption.KMS_MANAGED,
                 ContentBasedDeduplication = true,
-                QueueName = AWSConstructs.Names.FroniusIngressQueue
+                QueueName = AWSConstructs.Names.FroniusIngressQueue,
+                VisibilityTimeout = Duration.Seconds(43200)
             });
 
             var realtimeDataTable = new Table(this, AWSConstructs.Names.RealtimeDataTable, new TableProps {
