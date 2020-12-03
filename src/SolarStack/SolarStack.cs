@@ -1,15 +1,10 @@
 using Amazon.CDK;
-using Amazon.CDK.AWS.IAM;
 using Amazon.CDK.AWS.Lambda;
 using Amazon.CDK.AWS.Lambda.EventSources;
 using Amazon.CDK.AWS.SQS;
 using Amazon.CDK.AWS.DynamoDB;
-using Amazon.Lambda.Core;
-using Amazon.Lambda.SQSEvents;
-using System.Collections.Generic;
 
-namespace SolarStack
-{
+namespace SolarStack {
     public class SolarStack : Stack
     {
         internal SolarStack(Construct scope, IStackProps props = null) 
@@ -33,11 +28,14 @@ namespace SolarStack
                 Runtime = Runtime.DOTNET_CORE_3_1,
                 Code = Code.FromAsset("src/LambdaHandlers/bin/Release/netcoreapp3.1/LambdaHandlers.zip"),
                 Handler = LambdaHandlers.FroniusRealtimeHandler.HandlerName,
-                FunctionName = AWSConstructs.Names.FroniusIngressHandler
+                FunctionName = AWSConstructs.Names.FroniusIngressHandler,
+                Timeout = Duration.Minutes(5)
             });
 
             ingressFunction.AddEventSource(new SqsEventSource(ingressQueue));
+
 			_ = realtimeDataTable.GrantReadWriteData(ingressFunction);
+			_ = realtimeDataTable.Grant(ingressFunction, "dynamodb:DescribeTable");
         }
     }
 }
