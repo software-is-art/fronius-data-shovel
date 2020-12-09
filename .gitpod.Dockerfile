@@ -7,7 +7,8 @@ RUN sudo apt-get update && \
     sudo apt-get install -y apt-transport-https && \
     sudo apt-get update && \
     sudo apt-get install -y dotnet-sdk-5.0 && \
-    sudo apt-get install -y dotnet-sdk-3.1
+    sudo apt-get install -y dotnet-sdk-3.1 && \
+    echo "\nPATH=$PATH:$HOME/.dotnet/tools" >> $HOME/.bash_profile
 
 RUN dotnet tool install -g Amazon.Lambda.Tools
 RUN dotnet tool install -g dotnet-format
