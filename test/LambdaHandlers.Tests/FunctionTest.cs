@@ -81,7 +81,7 @@ namespace LambdaHandlers.Tests
             var function = new FroniusRealtimeHandler();
             await function.FunctionHandler(sqsEvent, context);
 
-            Assert.Equal($"Roundtripped serialization result: {JsonSerializer.Serialize(JsonSerializer.Deserialize<Response>(ResponseObject))}\r\n", logger.Buffer.ToString());
+            // TO DO - Use Test Dynamo client to check documents are written
         }
     }
 }
