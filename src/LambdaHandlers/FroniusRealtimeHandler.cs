@@ -18,24 +18,26 @@ namespace LambdaHandlers
 
         public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
         {
-            foreach (var message in evnt.Records)
-            {
-                await ProcessMessageAsync(message, context);
-            }
-        }
-
-        private async Task ProcessMessageAsync(SQSEvent.SQSMessage message, ILambdaContext context)
-        {
-            var response = JsonSerializer.Deserialize<Response>(message.Body);
-            var timestamp = response.Head.Timestamp;
             var client = new AmazonDynamoDBClient(
                 new AmazonDynamoDBConfig
                 {
                     RegionEndpoint = RegionEndpoint.USEast1
                 }
             );
-            var site = response.Body.Data.Site;
             var table = Table.LoadTable(client, AWSConstructs.Names.RealtimeDataTable);
+
+            // TO DO - batch insert to Dynamo
+            foreach (var message in evnt.Records)
+            {
+                await ProcessMessageAsync(message, context, table);
+            }
+        }
+
+        private async Task ProcessMessageAsync(SQSEvent.SQSMessage message, ILambdaContext context, Table table)
+        {
+            var response = JsonSerializer.Deserialize<Response>(message.Body);
+            var site = response.Body.Data.Site;
+            var timestamp = response.Head.Timestamp;
             var document = new Document
             {
                 [AWSConstructs.Names.RealtimeDataTablePartitionKey] = timestamp.ToString("yyyy-MM-dd-HH-mm"),
