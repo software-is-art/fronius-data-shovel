@@ -58,7 +58,6 @@ namespace LambdaHandlers.Tests
    }
 }";
 
-        [Fact]
         public async Task TestSQSEventLambdaFunction()
         {
             var sqsEvent = new SQSEvent
