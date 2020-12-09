@@ -1,5 +1,7 @@
 FROM gitpod/workspace-full
 
+USER gitpod
+
 RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
     sudo dpkg -i packages-microsoft-prod.deb
 
@@ -7,8 +9,7 @@ RUN sudo apt-get update && \
     sudo apt-get install -y apt-transport-https && \
     sudo apt-get update && \
     sudo apt-get install -y dotnet-sdk-5.0 && \
-    sudo apt-get install -y dotnet-sdk-3.1 && \
-    echo "\nPATH=$PATH:$HOME/.dotnet/tools" >> $HOME/.bash_profile
+    sudo apt-get install -y dotnet-sdk-3.1
 
 RUN dotnet tool install -g Amazon.Lambda.Tools
 RUN dotnet tool install -g dotnet-format
