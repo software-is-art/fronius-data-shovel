@@ -2,12 +2,7 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: 'dotnet build FroniusDataShovel.sln && \
-  dotnet test FroniusDataShovel.sln && \
-  cd src/LambdaHandlers && \
-  dotnet lambda package && \
-  cd ../.. && \
-  cdk deploy'
+  - init: 'dotnet build FroniusDataShovel.sln && dotnet test FroniusDataShovel.sln && cd src/LambdaHandlers && dotnet lambda package && cd ../.. && cdk deploy'
 
 github:
   prebuilds:
