@@ -23,7 +23,7 @@ RUN npm install -g aws-cdk
 
 RUN cd $HOME && \
     wget https://github.com/balena-io/balena-cli/releases/download/v12.33.1/balena-cli-v12.33.1-linux-x64-standalone.zip && \
-    uzip balena-cli-v12.33.1-linux-x64-standalone.zip && \
+    unzip balena-cli-v12.33.1-linux-x64-standalone.zip && \
     rm balena-cli-v12.33.1-linux-x64-standalone.zip
 
 ENV PATH "$PATH:$HOME/balena-cli"
