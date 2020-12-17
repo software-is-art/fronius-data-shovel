@@ -57,12 +57,13 @@ namespace FroniusDataShovel
                     await Task.Delay(10);
                     continue;
                 }
-                var message = new SendMessageRequest(url, JsonSerializer.Serialize(data))
+                var dataJson = JsonSerializer.Serialize(data);
+                var message = new SendMessageRequest(url, dataJson)
                 {
                     MessageGroupId = "DataShovel"
                 };
                 var response = await sqsClient.SendMessageAsync(message);
-                Console.WriteLine($"{response.HttpStatusCode} | {response.MessageId}");
+                Console.WriteLine($"{response.HttpStatusCode} | {response.MessageId} | {dataJson}");
                 dataLast = data;
             }
         }
