@@ -48,7 +48,7 @@ namespace LambdaHandlers
                 ["AccumulatorPower"] = site.AccumulatorPower,
                 ["GridPower"] = site.GridPower,
                 ["LoadPower"] = site.LoadPower,
-                ["CollectorPower"] = site.ArrayPower,
+                ["ArrayPower"] = site.ArrayPower,
                 ["Autonomy"] = site.AutonomyPercent,
                 ["SelfConsumption"] = site.SelfConsumptionPercent
             };
