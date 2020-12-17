@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Amazon;
 using Amazon.SQS;
 using Amazon.SQS.Model;
 using CommandLine;
@@ -36,7 +37,7 @@ namespace FroniusDataShovel
         static async Task PushToSQS(IClient client, string accountId)
         {
             var source = new CancellationTokenSource();
-            var sqsClient = new AmazonSQSClient();
+            var sqsClient = new AmazonSQSClient(RegionEndpoint.USEast1);
             var urlRequest = new GetQueueUrlRequest
             {
                 QueueName = AWSConstructs.Names.FroniusIngressQueue,
@@ -71,6 +72,7 @@ namespace FroniusDataShovel
             var scan = new LinkedList<Task<(IClient, Response?)>>(GetResponsesFromGatewayClients(cancellationToken));
             while (scan.Count > 0)
             {
+                await Task.Delay(1000);
                 var node = scan.First;
                 while (node != null)
                 {
@@ -98,6 +100,7 @@ namespace FroniusDataShovel
                 {
                     continue;
                 }
+                Console.WriteLine($"Gateway found: {ip}");
                 var segments = ip.ToString().Split(".");
                 foreach (byte sub in Enumerable.Range(0, 256))
                 {
@@ -111,7 +114,8 @@ namespace FroniusDataShovel
             var client = new Client(__httpClient, baseUri);
             try
             {
-                return (client, await client.GetPowerFlowRealtimeData(cancellationToken));
+                var response = await client.GetPowerFlowRealtimeData(cancellationToken);
+                return (client, response);
             }
             catch
             {
