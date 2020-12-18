@@ -25,8 +25,6 @@ namespace LambdaHandlers
                 }
             );
             var table = Table.LoadTable(client, AWSConstructs.Names.RealtimeDataTable);
-
-            // TO DO - batch insert to Dynamo
             foreach (var message in evnt.Records)
             {
                 await ProcessMessageAsync(message, context, table);
@@ -42,15 +40,15 @@ namespace LambdaHandlers
             {
                 [AWSConstructs.Names.RealtimeDataTablePartitionKey] = timestamp.ToString("yyyy-MM-dd-HH-mm"),
                 [AWSConstructs.Names.RealtimeDataTableSortKey] = ((DateTimeOffset)timestamp).ToUnixTimeSeconds(),
-                ["EnergyDay"] = site.EnergyDay,
-                ["EnergyYear"] = site.EnergyYear,
-                ["EnergyTotal"] = site.EnergyTotal,
-                ["AccumulatorPower"] = site.AccumulatorPower,
-                ["GridPower"] = site.GridPower,
-                ["LoadPower"] = site.LoadPower,
-                ["ArrayPower"] = site.ArrayPower,
-                ["Autonomy"] = site.AutonomyPercent,
-                ["SelfConsumption"] = site.SelfConsumptionPercent
+                ["EnergyDay"] = site.EnergyDay ?? 0,
+                ["EnergyYear"] = site.EnergyYear ?? 0,
+                ["EnergyTotal"] = site.EnergyTotal ?? 0,
+                ["AccumulatorPower"] = site.AccumulatorPower ?? 0,
+                ["GridPower"] = site.GridPower ?? 0,
+                ["LoadPower"] = site.LoadPower ?? 0,
+                ["ArrayPower"] = site.ArrayPower ?? 0,
+                ["Autonomy"] = site.AutonomyPercent ?? 0,
+                ["SelfConsumption"] = site.SelfConsumptionPercent ?? 0
             };
             _ = await table.PutItemAsync(document);
         }

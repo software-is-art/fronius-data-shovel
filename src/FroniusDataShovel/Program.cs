@@ -58,10 +58,7 @@ namespace FroniusDataShovel
                     continue;
                 }
                 var dataJson = JsonSerializer.Serialize(data);
-                var message = new SendMessageRequest(url, dataJson)
-                {
-                    MessageGroupId = "DataShovel"
-                };
+                var message = new SendMessageRequest(url, dataJson);
                 var response = await sqsClient.SendMessageAsync(message);
                 Console.WriteLine($"{response.HttpStatusCode} | {response.MessageId} | {dataJson}");
                 dataLast = data;

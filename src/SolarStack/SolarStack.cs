@@ -13,9 +13,7 @@ namespace SolarStack
         {
             var ingressQueue = new Queue(this, nameof(AWSConstructs.Names.FroniusIngressQueue), new QueueProps
             {
-                Fifo = true,
                 Encryption = QueueEncryption.KMS_MANAGED,
-                ContentBasedDeduplication = true,
                 QueueName = AWSConstructs.Names.FroniusIngressQueue,
                 VisibilityTimeout = Duration.Seconds(43200)
             });
@@ -31,7 +29,7 @@ namespace SolarStack
             var ingressFunction = new Function(this, nameof(AWSConstructs.Names.FroniusIngressHandler), new FunctionProps
             {
                 Runtime = Runtime.DOTNET_CORE_3_1,
-                Code = Code.FromAsset("src/LambdaHandlers/bin/Release/netcoreapp3.1/LambdaHandlers.zip"),
+                Code = Code.FromAsset("src/LambdaHandlers/bin/release/netcoreapp3.1/LambdaHandlers.zip"),
                 Handler = LambdaHandlers.FroniusRealtimeHandler.HandlerName,
                 FunctionName = AWSConstructs.Names.FroniusIngressHandler,
                 Timeout = Duration.Minutes(5)
