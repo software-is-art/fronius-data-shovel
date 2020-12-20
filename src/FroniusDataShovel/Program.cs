@@ -28,10 +28,18 @@ namespace FroniusDataShovel
             {
                 throw new Exception("AWS_ACCOUNT_ID must be non null and valid");
             }
-            var source = new CancellationTokenSource();
-            var client = await DiscoverInverter(source.Token);
-            source.Cancel();
-            await PushToSQS(client, accountId);
+            try
+            {
+                var source = new CancellationTokenSource();
+                var client = await DiscoverInverter(source.Token);
+                source.Cancel();
+                await PushToSQS(client, accountId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+                Console.WriteLine($"{e.StackTrace}");
+            }
         }
 
         static async Task PushToSQS(IClient client, string accountId)

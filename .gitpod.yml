@@ -4,6 +4,10 @@ image:
 tasks:
   - init: 'dotnet build FroniusDataShovel.sln && dotnet test FroniusDataShovel.sln && cd src/LambdaHandlers && dotnet lambda package && cd ../.. && cdk deploy'
 
+vscode:
+  extensions:
+    - ms-vscode.csharp@1.21.12:kw8SkO8+aVTSFug281WfQQ==
+
 github:
   prebuilds:
     # enable for the master/default branch (defaults to true)
