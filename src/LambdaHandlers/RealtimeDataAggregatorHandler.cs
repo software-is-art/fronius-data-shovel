@@ -4,6 +4,7 @@ using System.Text;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.DynamoDBEvents;
 using Amazon.Lambda.Serialization.Json;
+using Amazon.DynamoDBv2.Model;
 
 namespace LambdaHandlers
 {
@@ -15,19 +16,47 @@ namespace LambdaHandlers
 
         public void FunctionHandler(DynamoDBEvent dynamoEvent)
         {
-            Console.WriteLine($"Beginning to process {dynamoEvent.Records.Count} records...");
-
             foreach (var record in dynamoEvent.Records)
             {
-                Console.WriteLine($"Event ID: {record.EventID}");
-                Console.WriteLine($"Event Name: {record.EventName}");
-
-                string streamRecordJson = SerializeObject(record.Dynamodb);
-                Console.WriteLine($"DynamoDB Record:");
-                Console.WriteLine(streamRecordJson);
+                var image = record.Dynamodb.NewImage;
+                var timestamp = long.Parse(image["Timestamp"].N);
+                var timebucket = image["TimeBucket"];
+                var energyDay = GetDouble(image["EnergyDay"]);
+                var gridPower = GetDouble(image["GridPower"]);
+                var selfConsumption = GetDouble(image["SelfConsumption"]);
+                var accumulatorPower = GetDouble(image["AccumulatorPower"]);
+                var energyYear = GetDouble(image["EnergyYear"]);
+                var energyTotal = GetDouble(image["EnergyTotal"]);
+                var arrayPower = GetDouble(image["ArrayPower"]);
+                var autonomy = GetDouble(image["Autonomy"]);
+                var loadPower = GetDouble(image["LoadPower"]);
+                Console.WriteLine($@"Parsed:
+Timestamp: {timestamp},
+TimeBucket: {timebucket},
+EnergyDay: {energyDay},
+GridPower: {gridPower},
+SelfConsumption: {selfConsumption},
+AccumulatorPower: {accumulatorPower},
+EnergyYear: {energyYear},
+EnergyTotal: {energyTotal},
+ArrayPower: {arrayPower},
+Autonomy: {autonomy},
+LoadPower: {loadPower} 
+                ");
             }
+        }
 
-            Console.WriteLine("Stream processing complete.");
+        private double? GetDouble(AttributeValue value)
+        {
+            if (value.NULL)
+            {
+                return null;
+            }
+            if (string.IsNullOrEmpty(value.S))
+            {
+                return double.Parse(value.N);
+            }
+            return double.NaN;
         }
 
         private string SerializeObject(object streamRecord)
