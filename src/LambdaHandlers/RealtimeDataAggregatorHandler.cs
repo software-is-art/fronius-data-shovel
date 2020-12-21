@@ -5,13 +5,15 @@ using Amazon.Lambda.Core;
 using Amazon.Lambda.DynamoDBEvents;
 using Amazon.Lambda.Serialization.Json;
 
-namespace RealtimeDataAggregatorHandler
+namespace LambdaHandlers
 {
     public class RealtimeDataAggregatorHandler
     {
         private static readonly JsonSerializer _jsonSerializer = new JsonSerializer();
 
-        public void ProcessDynamoEvent(DynamoDBEvent dynamoEvent)
+        public static string HandlerName { get; } = $"{nameof(LambdaHandlers)}::{nameof(LambdaHandlers)}.{nameof(RealtimeDataAggregatorHandler)}::{nameof(FunctionHandler)}";
+
+        public void FunctionHandler(DynamoDBEvent dynamoEvent)
         {
             Console.WriteLine($"Beginning to process {dynamoEvent.Records.Count} records...");
 
