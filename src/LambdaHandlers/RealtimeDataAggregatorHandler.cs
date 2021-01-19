@@ -18,18 +18,19 @@ namespace LambdaHandlers
         {
             foreach (var record in dynamoEvent.Records)
             {
+                // TODO: Write DynamoDB update expression for each field to aggregate timeseries data
                 var image = record.Dynamodb.NewImage;
                 var timestamp = long.Parse(image["Timestamp"].N);
                 var timebucket = image["TimeBucket"];
-                var energyDay = GetDouble(image["EnergyDay"]);
-                var gridPower = GetDouble(image["GridPower"]);
-                var selfConsumption = GetDouble(image["SelfConsumption"]);
-                var accumulatorPower = GetDouble(image["AccumulatorPower"]);
-                var energyYear = GetDouble(image["EnergyYear"]);
-                var energyTotal = GetDouble(image["EnergyTotal"]);
-                var arrayPower = GetDouble(image["ArrayPower"]);
-                var autonomy = GetDouble(image["Autonomy"]);
-                var loadPower = GetDouble(image["LoadPower"]);
+                var energyDay = GetDouble(image["EnergyDay"]); // Use MAX
+                var gridPower = GetDouble(image["GridPower"]); // Use MIN, MAX, AVERAGE, and SUM
+                var selfConsumption = GetDouble(image["SelfConsumption"]); // Use MAX and SUM
+                var accumulatorPower = GetDouble(image["AccumulatorPower"]); // Use MIN, MAX, AVERAGE, and SUM
+                var energyYear = GetDouble(image["EnergyYear"]); // Use MAX
+                var energyTotal = GetDouble(image["EnergyTotal"]); // Use MAX
+                var arrayPower = GetDouble(image["ArrayPower"]); // Use MIN, MAX, AVERAGE, and SUM
+                var autonomy = GetDouble(image["Autonomy"]); // Use MIN, MAX, AVERAGE, and SUM
+                var loadPower = GetDouble(image["LoadPower"]); // Use MIN, MAX, AVERAGE, and SUM
                 Console.WriteLine($@"Parsed:
 Timestamp: {timestamp},
 TimeBucket: {timebucket},
